@@ -261,7 +261,7 @@ sub doRequest {
         DEBUG && print "=== $ver, $cmd, $dst_addr, $dst_port\n";        
 
         if ($dst_port == HTTP_PORT) {
-            my $msg = replayMsg($ver, $atype, $dst_addr, $dst_port);
+            my $msg = replyMsg($ver, $atype, $dst_addr, $dst_port);
             $sock->syswrite($msg, length($msg));
 
             DEBUG && print "<<< $msg\n";
@@ -307,7 +307,7 @@ sub doRequest {
 
         if ($established) {
             DEBUG && print "$dst_addr:$dst_port Connection established.\n";
-            my $msg = replayMsg($ver, $atype, $dst_addr, $dst_port);
+            my $msg = replyMsg($ver, $atype, $dst_addr, $dst_port);
             $sock->syswrite($msg, length($msg));
             
             DEBUG && print "<<< $msg\n";
@@ -397,7 +397,7 @@ sub doRequest {
     exit(1);
 }
 
-sub replayMsg
+sub replyMsg
 {
     my ($ver, $atype, $dst_addr, $dst_port) = @_;
 
